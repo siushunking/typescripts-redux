@@ -1,33 +1,33 @@
-
+export interface Note {
+  id: number
+  name: string
+}
 
 export interface NotesState {
-  notes: string[],  // if notes is array object, how to define the notes like id:number name:string
-  // search: string
+  notes: Note[]  // if notes is array object, how to define the notes like id:number name:string
+  search: string
   test: string
 }
 
-// type Notes{
-//
+// interface SearchState {
+//   search: string
 // }
 
 const initialState = {
   notes: [],
-  // search: null,
+  search: '',
   test: 'test'
 }
 
 
-export type Action = { type: "ADD_NOTE" | "SEARCH" ; payload: string };
+
+export type Action = { type: "ADD_NOTE" | "SEARCH" ; payload: any };
 
 export const notesReducer = (state:NotesState = initialState, action: Action) => {
   switch(action.type){
-    case "ADD_NOTE": {
+    case "ADD_NOTE": 
       return {...state, notes: [...state.notes, action.payload]}  //if post
       console.log(initialState.notes);
-    }
-    // case "SEARCH":{
-    //   return {state.search: action.payload}
-    // }
     default:
       return state
   }

@@ -3,7 +3,11 @@ import { NotesState } from "./store/notesReducer";
 import React, { useState } from "react";
 import 'antd/dist/antd.css';
 import { Input, Button, Space, Divider, List, Typography, Avatar } from 'antd';
-import SearchBar from "./components/SearchBar";
+import SearchBar from "./components/AddBar";
+import {Note} from './store/notesReducer'
+import FindBar from "./components/FindBar";
+
+
 // post get
 
 function App() {
@@ -15,13 +19,12 @@ function App() {
     (state) => state.notes
   );
 
-  const renderFunction = (note: string) => {
+  const renderFunction = (note: Note) => {
     return (
-      
-      <List.Item key={note}>
+      <List.Item key={note.id}>
         <List.Item.Meta 
           avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-          title={<a href="https://ant.design">{note}</a>}
+          title={<a href="https://ant.design">{note.name}</a>}
           description={`USER NO: ${note}`}
           />
       </List.Item>
@@ -31,6 +34,8 @@ function App() {
 
   return (
     <>
+    <FindBar />
+    <SearchBar />
       {/* <SearchBar /> */}
       <Space
         style={{
